@@ -1,33 +1,81 @@
-# SwingBy
+<div align="center">
 
-A desktop reminder app where a web-swinging hero drops onto your screen, over any app, to tell you to drink water, stretch, rest your eyes, or go to bed.
+<br>
 
-Most reminders are a notification you swipe away without reading. SwingBy is built to be noticed: a character swings in on a web line, "types" a short message in a speech bubble, and waits for you to answer.
+# 🕸️ S W I N G B Y
 
-![SwingBy screenshot](docs/screenshot.png)
-<!-- Add a screenshot or a short GIF at docs/screenshot.png -->
+### *Your reminders, delivered by a very polite menace.*
 
-## Features
+<br>
 
-- **Shows over any app.** Word, your desktop, a browser or a game. It appears on top without stealing your typing focus.
-- **Two kinds of reminders.** Repeat every X minutes (for example, water every 30 minutes), or ring at set clock times like 7:00 PM and 2:00 AM.
-- **Quick timer.** "Remind me in 10 minutes about the tea."
-- **Snooze or done.** Snooze brings the hero back in 5 minutes. If you ignore him, he swings away and returns later. Done counts toward your daily total.
-- **Quiet hours.** Pause repeating reminders at night. Clock-time alarms still ring, because you set those on purpose.
-- **Runs in the system tray.** Closing the window keeps SwingBy running. Pause, test, or quit from the tray menu.
-- **Starts with your computer** (installed version).
-- **Dark theme** with an editable name, message and schedule for every reminder.
-- **Original character.** The hero is an original design, drawn as SVG and animated with CSS.
+![Platform](https://img.shields.io/badge/Windows-0b0d14?style=for-the-badge&logo=windows&logoColor=e23b4e)
+![Electron](https://img.shields.io/badge/Electron-0b0d14?style=for-the-badge&logo=electron&logoColor=e23b4e)
+![JavaScript](https://img.shields.io/badge/JavaScript-0b0d14?style=for-the-badge&logo=javascript&logoColor=e23b4e)
+![Status](https://img.shields.io/badge/Hero-On%20Duty-e23b4e?style=for-the-badge&labelColor=0b0d14)
 
-## Install (Windows)
+<br>
 
-1. Go to the [Releases page](https://github.com/Nishupathak/swingby-desktop/releases) and download **SwingBy Setup 1.0.0.exe**.
-2. Double-click it. If Windows shows "Windows protected your PC", click **More info**, then **Run anyway**. This appears because the app is not signed with a paid certificate.
-3. Open SwingBy from the Start menu. In **General**, tick *Start SwingBy when I sign in*.
+<!-- Put a GIF of the hero swinging in here. It is the best thing on this page. -->
+<img src="docs/demo.gif" alt="SwingBy demo" width="720">
 
-## Run from source
+<br>
 
-You need [Node.js](https://nodejs.org) (LTS).
+</div>
+
+---
+
+## 💬 The problem
+
+Normal reminders are a small box in the corner of your screen. You swipe it away without reading it, and three hours later you realise you haven't had water since breakfast.
+
+**SwingBy fixes that with drama.**
+
+A hero swings in on a web line, types out a short message, and waits for your answer. He shows up over **any app**: Word, your desktop, a browser, a game. He never steals your keyboard, so your typing is safe.
+
+---
+
+## ⚡ What it can do
+
+| | |
+|---|---|
+| 🕷️ **Shows over everything** | Appears on top of any app without taking your typing focus. |
+| ⏰ **Two kinds of reminders** | Repeat every X minutes, or ring at exact times like `7:00 PM` and `2:00 AM`. |
+| ⏱️ **Quick timer** | "Remind me in 10 minutes about the tea." |
+| 💬 **Texting-style bubble** | Typing dots first, then the message types out letter by letter. |
+| 😴 **Snooze or done** | Snooze brings him back in 5 minutes. Ignore him and he swings away, then returns. |
+| 🌙 **Quiet hours** | Repeating reminders pause at night. Clock alarms still ring, because you set those on purpose. |
+| 🔔 **Lives in your tray** | Close the window and he keeps watching. Pause, test or quit from the tray menu. |
+| 🚀 **Starts with your PC** | Tick one box and he is on duty every time you sign in. |
+| 🎨 **Dark by design** | Every reminder has an editable name, message and schedule. |
+
+> The hero is an **original character**, drawn in SVG and animated in CSS. No trademarks were harmed.
+
+---
+
+## 🎬 A day with SwingBy
+
+```text
+ 10:00   💧  "Water break. You've been at it a while."
+ 10:30   💧  "Water break. Still at it?"
+ 11:00   🤸  "Stretch. Stand up. Roll your shoulders."
+ 19:00   ⏰  Your 7 PM alarm. Rings no matter what.
+ 23:00   🌙  "Wind down. Save your work."
+ 02:00   ⏰  Yes, he will wake you up at 2 AM if you ask him to.
+```
+
+---
+
+## 📥 Get it
+
+### Just want the app? (Windows)
+
+1. Open the [**Releases**](https://github.com/Nishupathak/swingby-desktop/releases) page.
+2. Download **`SwingBy Setup 1.0.0.exe`** and double-click it.
+3. If Windows says *"Windows protected your PC"*, click **More info**, then **Run anyway**.
+   That screen shows up for any app without a paid signing certificate.
+4. Open **SwingBy** from the Start menu and tick **Start SwingBy when I sign in**.
+
+### Want to run the code?
 
 ```bash
 git clone https://github.com/Nishupathak/swingby-desktop.git
@@ -36,55 +84,94 @@ npm install
 npm start
 ```
 
-Build your own installer:
+Build your own installer with `npm run dist`. It appears in the `dist` folder.
 
-```bash
-npm run dist
+---
+
+## 🧠 How it works
+
+```mermaid
+flowchart LR
+    A[⏲️ Scheduler<br/>checks every 5s] -->|reminder is due| B{Hero busy?}
+    B -->|no| C[🕷️ Overlay window<br/>transparent, on top]
+    B -->|yes| D[📋 Queue]
+    D --> C
+    C -->|Done| E[✅ Counts for today]
+    C -->|Snooze or ignored| F[⏰ Comes back in 5 min]
+    G[⚙️ Settings window] -->|saves reminders| A
+    H[🔔 Tray icon] --> G
 ```
 
-The installer is created in the `dist` folder.
+**Two windows, one app:**
 
-## How it works
+- **The overlay** is a transparent, frameless, always-on-top window that appears without taking focus. Clicks pass through to the app underneath, except when your mouse is over the speech bubble.
+- **The settings window** is where you manage reminders. Closing it hides it in the tray instead of quitting.
 
-SwingBy is an [Electron](https://www.electronjs.org) app with two windows:
-
-- **Overlay window:** a transparent, frameless, always-on-top window that is shown without taking focus. Clicks pass through to the app underneath, except when the mouse is over the speech bubble.
-- **Settings window:** where you manage reminders, timers and preferences. Closing it hides it to the tray.
-
-The main process runs a scheduler that checks every 5 seconds for due reminders, snoozes and timers, and queues them so two reminders never overlap. Settings are saved as a JSON file in the user's app data folder.
-
-```
-main.js              scheduler, tray, windows, saved data
-preload.js           safe bridge between the windows and the main process
-defaults.js          starting reminders and their wording
-overlay/             the hero, speech bubble, typing effect, sound
-settings/            the settings window
-assets/              icons
+```text
+swingby-desktop/
+├── main.js        🧠 scheduler, tray, windows, saved data
+├── preload.js     🔒 safe bridge between windows and the main process
+├── defaults.js    💬 starting reminders and their wording
+├── overlay/       🕷️ the hero, the bubble, the typing effect, the thwip
+├── settings/      ⚙️ the dark settings window
+└── assets/        🎨 icons
 ```
 
-## Customize
+---
 
-- Change reminder wording: edit `defaults.js` or use the settings window.
-- Change snooze length: `SNOOZE_MIN` in `main.js`.
-- Change the look of the hero and bubble: `overlay/overlay.css` and `overlay/overlay.html`.
+## 🛠️ Problems I had to solve
 
-## Challenges I solved
+<details>
+<summary><b>How do you draw over Word without stealing the keyboard?</b></summary>
 
-- **Drawing over other apps without interrupting them.** The overlay uses a non-focusable window and toggles click-through, so it never grabs keystrokes from the app you are typing in.
-- **Alarms at exact times.** Clock-time reminders are checked against the local time with a short grace window, so a brief sleep or slow start does not skip them.
-- **Quiet hours that make sense.** Only repeating reminders are silenced, so a deliberate 2 AM alarm still rings.
+The overlay is a non-focusable window shown with `showInactive()`, so your typing never moves. Click-through is switched on everywhere except the speech bubble, so you can still press Done and Snooze.
+</details>
 
-## Roadmap
+<details>
+<summary><b>How do you ring at exactly 2:00 AM?</b></summary>
 
-- A different animation for each reminder type
-- Streaks and a weekly summary
-- Pomodoro mode
-- Mac build
+Clock alarms are checked against local time with a short grace window. A brief sleep or a slow start does not skip an alarm, and a one-per-day record stops the same alarm ringing twice.
+</details>
 
-## Tech
+<details>
+<summary><b>What should quiet hours silence?</b></summary>
 
-Electron, JavaScript, HTML, CSS, SVG, Web Audio API.
+Only the repeating reminders. If you set an alarm for 2 AM yourself, you meant it, so it still rings.
+</details>
 
-## License
+<details>
+<summary><b>What if two reminders fire together?</b></summary>
 
-MIT
+They queue up. The hero finishes the first one, leaves, and then comes back for the next.
+</details>
+
+---
+
+## 🎨 Make it yours
+
+| Want to change... | Edit this |
+|---|---|
+| What the hero says | `defaults.js` or the settings window |
+| Snooze length | `SNOOZE_MIN` in `main.js` |
+| The bubble and colours | `overlay/overlay.css` |
+| The hero's look | the SVG in `overlay/overlay.html` |
+| Typing speed and the thwip | `overlay/overlay.js` |
+
+---
+
+## 🗺️ What's next
+
+- [ ] A different entrance for each reminder type
+- [ ] Streaks and a weekly summary
+- [ ] Pomodoro mode
+- [ ] A Mac build
+
+---
+
+<div align="center">
+
+**Built with Electron, JavaScript, SVG and a lot of water breaks.**
+
+*Stay hydrated, hero.* 💧
+
+</div>

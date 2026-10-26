@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'">
+<title>SwingBy</title>
+<link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>SwingBy</h1>
+      <p class="sub">Reminders that swing onto your screen, over any app.</p>
+    </div>
+    <div class="stat"><b id="done">0</b><span>done today</span></div>
+  </header>
+
+  <section>
+    <h2>Reminders</h2>
+    <div id="list"></div>
+  </section>
+
+  <section>
+    <h2>Quick timer</h2>
+    <div class="form">
+      <label>Remind me in <input id="qMin" type="number" min="1" value="10" class="num"> minutes</label>
+      <input id="qLabel" placeholder="About what? (optional)" maxlength="40">
+      <button id="qStart" class="primary">Start timer</button>
+      <p class="hint" id="qMsg" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>New reminder</h2>
+    <div class="form">
+      <input id="nTitle" placeholder="Name, e.g. Take a walk" maxlength="30">
+      <input id="nText" placeholder="Message" maxlength="80">
+      <label>When
+        <select id="nMode">
+          <option value="interval">Repeats every few minutes</option>
+          <option value="times">At a set time of day</option>
+        </select>
+      </label>
+      <label id="nIntRow">Every <input id="nInt" type="number" min="1" value="30" class="num"> minutes</label>
+      <label id="nTimeRow" hidden>At <input id="nTime" type="time" value="19:00"></label>
+      <button id="nAdd" class="primary">Add reminder</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>General</h2>
+    <div class="form">
+      <label class="check"><input type="checkbox" id="quietOn"> Quiet hours: pause repeating reminders at night</label>
+      <label>From <input type="time" id="qStartT"> to <input type="time" id="qEndT"></label>
+      <p class="hint">Reminders set for a clock time still ring during quiet hours.</p>
+      <label class="check"><input type="checkbox" id="soundOn"> Play a thwip when the hero arrives</label>
+      <label class="check"><input type="checkbox" id="autoOn"> Start SwingBy when I sign in to my computer</label>
+      <p class="hint" id="autoHint" hidden>Available in the installed version. Run <code>npm run dist</code> to build it.</p>
+    </div>
+  </section>
+
+  <script src="settings.js"></script>
+</body>
+</html>

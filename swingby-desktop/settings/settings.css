@@ -1,0 +1,57 @@
+:root { --bg:#0b0d14; --panel:#12151f; --line:#232838; --text:#e8eaf2; --muted:#8b91a8; --red:#e23b4e; --blue:#7b9bff; }
+* { box-sizing: border-box; }
+body { margin: 0; padding: 22px 22px 40px; background: var(--bg); color: var(--text);
+       font: 14px/1.45 "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif; }
+header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 26px; }
+h1 { margin: 0; font-size: 30px; font-weight: 700; letter-spacing: -.02em; }
+.sub { margin: 2px 0 0; color: var(--muted); }
+.stat { text-align: right; line-height: 1.1; }
+.stat b { display: block; font-size: 30px; color: var(--red); }
+.stat span { color: var(--muted); font-size: 12px; }
+h2 { margin: 0 0 10px; font-size: 15px; font-weight: 600; color: var(--muted); }
+section { margin-bottom: 26px; }
+
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.card.off .name, .card.off .msg, .card.off .when { opacity: .45; }
+.top { display: flex; align-items: center; gap: 10px; }
+.name { flex: 1; font-size: 15px; font-weight: 600; }
+.msg { width: 100%; margin: 4px 0 8px 50px; width: calc(100% - 50px); color: var(--muted); }
+.name, .msg { background: transparent; border: 1px solid transparent; border-radius: 6px; padding: 3px 6px; color: inherit; font: inherit; }
+.name:hover, .msg:hover { border-color: var(--line); }
+.when { margin-left: 50px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--muted); }
+
+input, select { background: #0d1019; color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; font: inherit; }
+input::placeholder { color: #5d6482; }
+.num { width: 64px; }
+.form { display: grid; gap: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.form label { display: flex; align-items: center; gap: 8px; }
+.form label input:not([type=checkbox]), .form label select { flex: 0 1 auto; }
+.form > input { width: 100%; }
+.check { color: var(--text); }
+.check input { accent-color: var(--red); width: 16px; height: 16px; }
+.hint { margin: 0; color: var(--muted); font-size: 12.5px; }
+code { background: #0d1019; padding: 1px 5px; border-radius: 4px; }
+
+button { font: 600 13px inherit; font-family: inherit; cursor: pointer; border-radius: 8px; padding: 7px 12px; border: 1px solid var(--line);
+         background: transparent; color: var(--text); }
+button:hover { border-color: #3a4263; }
+.primary { background: var(--red); border-color: var(--red); color: #fff; justify-self: start; }
+.primary:hover { filter: brightness(1.1); border-color: var(--red); }
+.del:hover { color: var(--red); border-color: var(--red); }
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+[hidden] { display: none !important; }
+
+.switch { position: relative; width: 38px; height: 22px; flex: none; }
+.switch input { position: absolute; inset: 0; opacity: 0; margin: 0; cursor: pointer; z-index: 1; }
+.switch span { position: absolute; inset: 0; background: #262c42; border-radius: 999px; transition: background .15s; }
+.switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #c9cee3; transition: transform .15s; }
+.switch input:checked + span { background: var(--red); }
+.switch input:checked + span::after { transform: translateX(16px); background: #fff; }
+.switch input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+.chip { display: inline-flex; align-items: center; gap: 2px; background: #0d1019; border: 1px solid var(--line); border-radius: 999px; padding: 2px 4px 2px 10px; color: var(--text); font-size: 13px; }
+.chip button { border: 0; padding: 0 6px; color: var(--muted); font-size: 13px; }
+.chip button:hover { color: var(--red); }
+.when input[type=time] { padding: 3px 6px; }
+.when .small { padding: 3px 10px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

@@ -16,7 +16,7 @@
 <br>
 
 <!-- Put a GIF of the hero swinging in here. It is the best thing on this page. -->
-<img src="docs/demo.gif" alt="SwingBy demo" width="720">
+<img src="https://github.com/user-attachments/assets/f2f8a7e1-9415-4048-bc98-639340cb3a79" alt="SwingBy demo" width="720">
 
 <br>
 
@@ -166,12 +166,4 @@ They queue up. The hero finishes the first one, leaves, and then comes back for 
 - [ ] Pomodoro mode
 - [ ] A Mac build
 
----
 
-<div align="center">
-
-**Built with Electron, JavaScript, SVG and a lot of water breaks.**
-
-*Stay hydrated, hero.* 💧
-
-</div>
